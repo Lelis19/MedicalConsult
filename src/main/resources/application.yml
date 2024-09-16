@@ -1,0 +1,6 @@
+spring:
+  profiles:
+    active: dev
+java:
+  runtime:
+    version: '17'

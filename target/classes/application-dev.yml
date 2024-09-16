@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    generate-ddl: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-plataform: org.hibernate.dialect.h2dialect
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  datasource:
+    password: 'lelis'
+    driver-class-name: org.h2.Driver
+    username: sa
+    url: jdbc:h2:mem:marcasus
+server:
+  port: ${port:8080}
