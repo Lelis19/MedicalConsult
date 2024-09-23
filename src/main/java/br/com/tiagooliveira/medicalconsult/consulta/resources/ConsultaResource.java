@@ -40,8 +40,8 @@ public class ConsultaResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long Id){
-        consulta.setIdConsulta(Id);
+    public ResponseEntity<Consulta> atualizarConsulta(@RequestBody Consulta consulta, @PathVariable Long id){
+        consulta.setIdConsulta(id);
         Consulta consultaAtualizada = consultaService.atualizarConsulta(consulta);
         return ResponseEntity.ok().body(consultaAtualizada);
     }
