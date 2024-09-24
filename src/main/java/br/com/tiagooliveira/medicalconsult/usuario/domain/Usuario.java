@@ -28,6 +28,7 @@ public class Usuario {
     @Column(name = "PERMISSAO")
     private Permissao permissao;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Consulta> consultas;
 
