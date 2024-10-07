@@ -1,6 +1,7 @@
 package br.com.tiagooliveira.medicalconsult.consulta.domain;
 
 import br.com.tiagooliveira.medicalconsult.usuario.domain.Usuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

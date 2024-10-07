@@ -1,0 +1,376 @@
+openapi: 3.0.1
+info:
+  title: Gerenciamento de Consultas
+  version: v0
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+tags:
+  - name: Usuarios
+    description: Gerenciamento de usuários
+    externalDocs:
+      description: Administre a lista de usuários
+      url: http://swagger.io
+  - name: Consultas
+    description: Acesso aos dados das consultas
+    externalDocs:
+      description: Administre a lista de consultas
+      url: http://swagger.io
+paths:
+  /usuario/{id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Busque usuário cadastrado
+      description: Retorna as informações de um usuário pelo Id
+      operationId: buscarUsuarioPorId
+      parameters:
+        - name: id
+          in: path
+          description: Id do usuário para retorno
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        '400':
+          description: Id colocado é inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        '404':
+          description: Usuário não encontrado pelo Id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+    put:
+      tags:
+        - Usuarios
+      summary: Atualize um usuário cadastrado
+      description: Atualize um usuário cadastrado pelo Id
+      operationId: atualizarUsuario
+      parameters:
+        - name: id
+          in: path
+          description: Id do usuário que será atualizado
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Atualize as informações do usuário
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usuario"
+        required: true
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+        '400':
+          description: Id colocado é inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        '404':
+          description: Usuário não encontrado pelo Id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        '500':
+          description: Campo preenchido incorretamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+    delete:
+      tags:
+        - Usuarios
+      summary: Delete um usuário cadastrado
+      description: Delete um usuário cadastrado pelo Id
+      operationId: deletarUsuario
+      parameters:
+        - name: id
+          in: path
+          description: Id do usuário que será deletado
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Deletar200"
+        '400':
+          description: Id colocado é inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        '404':
+          description: Usuário não encontrado pelo Id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+  /consultas/{id}:
+    get:
+      tags:
+        - Consultas
+      summary: Busque uma consulta pelo Id
+      description: Retorna as informações de uma consulta pelo Id
+      operationId: buscarConsulta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consulta"
+    put:
+      tags:
+        - Consultas
+      summary: Atualize uma consulta cadastrada
+      description: Atualize uma consulta cadastrada pelo Id
+      operationId: atualizarConsulta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Atualize as informações da consulta
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consulta"
+        required: true
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consulta"
+        '400':
+          description: Id colocado é inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        '404':
+          description: Consulta não encontrada pelo Id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+        '500':
+          description: Campo preenchido incorretamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error500"
+    delete:
+      tags:
+        - Consultas
+      summary: Delete uma consulta cadastrada
+      description: Delete uma consulta cadastrada pelo Id
+      operationId: deletarConsulta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Deletar200"
+        '400':
+          description: Id colocado é inválido
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error400"
+        '404':
+          description: Consulta não encontrada pelo Id
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error404"
+  /usuario:
+    get:
+      tags:
+        - Usuarios
+      summary: Listar todos os usuários cadastrados
+      description: Retorna uma lista de todos os usuários cadastrados
+      operationId: listarUsuarios
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Usuario"
+    post:
+      tags:
+        - Usuarios
+      summary: Cadastrar um novo usuário
+      description: Adiciona um novo usuário ao sistema
+      operationId: cadastrarUsuario
+      requestBody:
+        description: Informações do usuário a ser cadastrado
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Usuario"
+        required: true
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Usuario"
+  /consultas:
+    get:
+      tags:
+        - Consultas
+      summary: Listar todas as consultas cadastradas
+      description: Retorna uma lista de todas as consultas cadastradas
+      operationId: listarConsultas
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Consulta"
+    post:
+      tags:
+        - Consultas
+      summary: Cadastrar uma nova consulta
+      description: Adiciona uma nova consulta ao sistema
+      operationId: cadastrarConsulta
+      requestBody:
+        description: Informações da consulta a ser cadastrada
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Consulta"
+        required: true
+      responses:
+        "200":
+          description: Operação realizada com sucesso!
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Consulta"
+components:
+  schemas:
+    Usuario:
+      type: object
+      properties:
+        idUsuario:
+          type: integer
+          format: int64
+          example: 1
+        nomeUsuario:
+          type: string
+          example: Tiago
+        email:
+          type: string
+          example: exemplo@gmail.com
+        cpf:
+          type: string
+          example: 123.456.789-12
+        telefone:
+          type: string
+          example: 12345-6789
+        dataNascimento:
+          type: string
+          format: date
+          example: 2002-09-12
+        permissao:
+          type: string
+          enum:
+            - ADMIN
+            - SECRETARIO
+          example: ADMIN
+    Consulta:
+      type: object
+      properties:
+        idConsulta:
+          type: integer
+          format: int64
+          example: 1
+        dataConsulta:
+          type: string
+          format: date-time
+          example: 2024-09-12T14:30:00Z
+        profissional:
+          type: string
+          example: Arsidney
+        especialidade:
+          type: string
+          example: Cardiologia
+        usuario:
+          $ref: "#/components/schemas/Usuario"
+    Deletar200:
+      type: object
+      properties:
+        mensagem:
+          type: string
+          example: Registro excluído com sucesso!
+    Error400:
+      type: object
+      properties:
+        mensagem:
+          type: string
+          example: ID inválido
+    Error404:
+      type: object
+      properties:
+        mensagem:
+          type: string
+          example: Usuário não encontrado
+    Error500:
+      type: object
+      properties:
+        mensagem:
+          type: string
+          example: Campo preenchido incorretamente
