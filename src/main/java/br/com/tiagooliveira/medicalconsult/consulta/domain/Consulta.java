@@ -20,7 +20,6 @@ public class Consulta {
     private String profissional;
     @Column(name= "ESPECIALIDADE")
     private String especialidade;
-
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
