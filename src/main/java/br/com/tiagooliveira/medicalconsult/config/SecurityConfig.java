@@ -57,6 +57,7 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS_GET)
                         .permitAll()
+                        .requestMatchers(HttpMethod.GET, PUBLIC_MATCHERS).permitAll()
                         .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
